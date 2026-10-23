@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:weatherapp/widgets/titulo_secao.dart';
+import 'package:weatherapp/screen/clima_atual.dart';
+import 'package:weatherapp/screen/previsao_semana.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,56 +14,35 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(colorScheme: .fromSeed(seedColor: Colors.deepPurple)),
-      home: Scaffold(
-        appBar: AppBar(title: Text("WeatherApp"), backgroundColor: Colors.blue),
-        body: ListView(
-          padding: EdgeInsets.all(16),
-          children: [
-            TituloSecao(titulo: "Cidade Atual"),
-            Text(
-              "piraporinha do norte",
-              style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
-            ),
-            Text(
-              "Segunda-feira, 15 de outubro",
-              style: TextStyle(fontSize: 16),
-            ),
+      home: HomeScreen(),
+    );
+  }
+}
 
-            Divider(),
-            TituloSecao(titulo: "Temperatura"),
-            Text(
-              "20°C",
-              style: TextStyle(fontSize: 48, fontWeight: FontWeight.bold),
-            ),
-            Text("sensação termica: 42°C", style: TextStyle(fontSize: 16)),
+class HomeScreen extends StatelessWidget {
+  const new({super.key});
 
-            Divider(),
-            TituloSecao(titulo: "Condição do tempo"),
-            Image.network(
-              "https://media.istockphoto.com/id/2185711639/pt/foto/flying-duck.jpg?s=2048x2048&w=is&k=20&c=Xjup2zIPcKGRyeb0LthaohIEKNXoljP8DoBSRhW_Z9s=",
-              height: 200,
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text("weaterApp")),
+      body: Column(
+        children: [
+          ElevatedButton(
+            onPressed: () => Navigator.push(
+              context,
+              MaterialPageRoute(builder: (_) => ClimaAtualScreen()),
             ),
-
-            Divider(),
-            TituloSecao(titulo: "Detalhes"),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                Icon(Icons.water_drop, color: Colors.blue, size: 32),
-                Icon(Icons.air, color: Colors.blue, size: 32),
-                Icon(Icons.umbrella, color: Colors.blue, size: 32),
-              ],
+            child: Text("Clima atual"),
+          ),
+          ElevatedButton(
+            onPressed: () => Navigator.push(
+              context,
+              MaterialPageRoute(builder: (_) => PrevisaoSemanaScreen()),
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [Text("99%"), Text("99 km/h"), Text("99%")],
-            ),
-
-            Divider(),
-            TituloSecao(titulo: "Atulização"),
-            ElevatedButton(onPressed: () {}, child: Text("atualizar")),
-          ],
-        ),
+            child: Text("Previsão da semana"),
+          ),
+        ],
       ),
     );
   }

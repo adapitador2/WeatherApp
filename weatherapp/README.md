@@ -15,3 +15,11 @@ A few resources to get you started if this is your first Flutter project:
 For help getting started with Flutter development, view the
 [online documentation](https://docs.flutter.dev/), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
+
+    Respostas:
+
+    Qual a diferença entre Expanded e Flexible?
+    R: Flexible sempre ira possuir tantas partes quanto forem indicadas, enquanto o expanded ira tentar ocupar o maximo de espaço disponivel
+
+    O que acontece quando dois elementos na mesma Row ou Column tem valores de flex diferentes?
+    R: eles ocuparão a quantidade de partes indicadas em cada um individualmente
