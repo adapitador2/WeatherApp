@@ -1,25 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:weatherapp/models/clima.dart';
 
 class CardCidade extends StatelessWidget {
-  final String cidade;
-  final int temperatura;
-  final int tmin;
-  final int tmax;
-  final int umidade;
-  final int vento;
-  final int chuva;
+  final Clima clima;
   final VoidCallback onTap;
-  const new({
-    super.key,
-    required this.cidade,
-    required this.temperatura,
-    required this.tmin,
-    required this.tmax,
-    required this.umidade,
-    required this.vento,
-    required this.chuva,
-    required this.onTap,
-  });
+  const new({super.key, required this.clima, required this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -35,11 +20,11 @@ class CardCidade extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    cidade,
+                    clima.cidade,
                     style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                   ),
                   Text(
-                    "$temperatura°C",
+                    "${clima.temperaturaAtual}°C",
                     style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
                   ),
                 ],
@@ -47,18 +32,18 @@ class CardCidade extends StatelessWidget {
               SizedBox(height: 8),
               Row(
                 children: [
-                  Text("min: $tmin°C"),
+                  Text("min: ${clima.temperaturaMinima}°C"),
                   SizedBox(width: 16),
-                  Text("max: $tmax°C"),
+                  Text("max: ${clima.temperaturaMaxima}°C"),
                 ],
               ),
               SizedBox(height: 8),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text("Umi. $umidade%"),
-                  Text("Vent. $vento km/h"),
-                  Text("Chuva $chuva%"),
+                  Text("Umi. ${clima.umidade}%"),
+                  Text("Vent. ${clima.vento} km/h"),
+                  Text("Chuva ${clima.chuva}%"),
                 ],
               ),
             ],

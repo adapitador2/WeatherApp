@@ -1,28 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:weatherapp/models/clima.dart';
 import 'package:weatherapp/widgets/info_clima.dart';
 
 class CardCidadePrincipal extends StatelessWidget {
-  final String cidade;
-  final IconData icone;
-  final int temperatura;
-  final int tmin;
-  final int tmax;
-  final int umidade;
-  final int vento;
-  final int chuva;
+  final Clima clima;
   final VoidCallback onTap;
-  const new({
-    super.key,
-    required this.cidade,
-    required this.icone,
-    required this.temperatura,
-    required this.tmin,
-    required this.tmax,
-    required this.umidade,
-    required this.vento,
-    required this.chuva,
-    required this.onTap,
-  });
+  const new({super.key, required this.clima, required this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -39,16 +22,16 @@ class CardCidadePrincipal extends StatelessWidget {
                 children: [
                   Expanded(
                     child: Text(
-                      cidade,
+                      clima.cidade,
                       style: TextStyle(
                         fontSize: 22,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
                   ),
-                  Text("min: $tmin°C"),
+                  Text("min: ${clima.temperaturaMinima}°C"),
                   SizedBox(width: 12),
-                  Text("max: $tmax°C"),
+                  Text("max: ${clima.temperaturaMaxima}°C"),
                 ],
               ),
               SizedBox(height: 16),
@@ -58,11 +41,11 @@ class CardCidadePrincipal extends StatelessWidget {
                     height: 90,
                     width: 90,
                     color: Colors.white,
-                    child: Icon(icone, color: Colors.amber, size: 56),
+                    child: Icon(clima.icone, color: Colors.amber, size: 56),
                   ),
                   SizedBox(width: 16),
                   Text(
-                    "$temperatura°C",
+                    "${clima.temperaturaAtual}°C",
                     style: TextStyle(fontSize: 48, fontWeight: FontWeight.bold),
                   ),
                 ],
@@ -71,9 +54,9 @@ class CardCidadePrincipal extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  InfoClima(icone: Icons.water_drop, valor: "$umidade%"),
-                  InfoClima(icone: Icons.air, valor: "$vento km/h"),
-                  InfoClima(icone: Icons.umbrella, valor: "$chuva%"),
+                  InfoClima(icone: Icons.water_drop, valor: "${clima.umidade}%"),
+                  InfoClima(icone: Icons.air, valor: "${clima.vento} km/h"),
+                  InfoClima(icone: Icons.umbrella, valor: "${clima.chuva}%"),
                 ],
               ),
             ],
