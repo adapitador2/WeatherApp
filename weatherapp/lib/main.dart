@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:weatherapp/models/clima.dart';
+import 'package:weatherapp/screen/formulario.dart';
 import 'package:weatherapp/screen/ver_clima.dart';
 import 'package:weatherapp/widgets/card_cidade.dart';
 import 'package:weatherapp/widgets/card_cidade_principal.dart';
+import 'package:weatherapp/widgets/form_decoration.dart';
 
 void main() {
   runApp(const MyApp());
@@ -38,6 +40,11 @@ class HomeScreen extends StatelessWidget {
       body: ListView(
         padding: EdgeInsets.all(16),
         children: [
+          TextField(
+            decoration: getInputDecoration('Pesquisar cidade')
+                .copyWith(prefixIcon: Icon(Icons.search)),
+          ),
+          SizedBox(height: 16),
           CardCidadePrincipal(
             clima: cidades.first,
             onTap: () => abrirCidade(context, cidades.first),
@@ -55,6 +62,15 @@ class HomeScreen extends StatelessWidget {
                 ),
               )
               .toList(),
+
+          SizedBox(height: 16),
+          ElevatedButton(
+            onPressed: () => Navigator.push(
+              context,
+              MaterialPageRoute(builder: (_) => Formulario()),
+            ),
+            child: Text("cadastre-se / entrar"),
+          ),
         ],
       ),
     );
